@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Princesita 💖</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome (Para íconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- API de YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <style>
+        /* Tipografías y Fondo */
+        body { font-family: 'Poppins', sans-serif; background-color: #000; }
+        .font-cursive { font-family: 'Dancing Script', cursive; }
+
+        /* Contenedor Principal (Tarjeta con borde neón) */
+        .neon-card {
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 
+                        inset 0 0 15px rgba(255, 215, 0, 0.2);
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+
+        /* Borde circular resplandeciente para el ramo principal */
+        .neon-circle {
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 
+                        inset 0 0 20px rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+        }
+
+        /* Botón neón principal */
+        .neon-btn {
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 
+                        inset 0 0 5px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+        .neon-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 1), 
+                        inset 0 0 10px rgba(255, 215, 0, 0.8);
+            text-shadow: 0 0 8px #FFD700;
+        }
+
+        /* Botón pequeño de música */
+        .music-btn {
+            border: 1px solid #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .music-btn:hover {
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+        }
+
+        /* Animaciones para cambiar de pantalla */
+        .fade-in { animation: fadeIn 0.8s ease-in forwards; }
+        .fade-out { animation: fadeOut 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.05); } }
+
+        /* Estilos para las fotos del collage */
+        .collage-img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .collage-img:hover { transform: scale(1.05); }
+
+        /* Reproductor Invisible */
+        #youtube-player {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 m-0 overflow-hidden text-white relative">
+
+    <!-- Reproductor de YouTube -->
+    <div id="youtube-player"></div>
+
+    <!-- PANTALLA 1: Portada -->
+    <div id="pantalla-1" class="neon-card w-full max-w-sm rounded-[30px] p-6 text-center flex flex-col items-center relative z-10">
+        
+        <button id="toggleMusicBtn" class="music-btn absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center text-[#FFD700] text-xs">
+            <i id="musicIcon" class="fas fa-music"></i>
+        </button>
+
+        <h1 class="text-[#FFD700] font-bold text-2xl mt-4 leading-snug">
+            Feliz Día de las <br> Flores Amarillas
+        </h1>
+        
+        <h2 class="text-[#FFD700] font-cursive text-3xl mt-1 mb-1">
+            Ana Sofia 💖
+        </h2>
+
+        <p class="text-gray-300 text-sm mt-1 mb-8 tracking-wider">21 de Septiembre</p>
+
+        <!-- FOTO DE PORTADA ACTUALIZADA -->
+        <div class="neon-circle w-48 h-48 mb-8 overflow-hidden bg-black flex items-center justify-center">
+            <img src="./img/flores amrillas portada.jpeg" alt="Ramo de Flores Amarillas" class="w-full h-full object-cover opacity-90">
+        </div>
+
+        <p class="text-white text-sm font-light mb-4">En este día especial, quiero que sepas...</p>
+        <p class="text-white text-[15px] font-medium leading-relaxed px-4 mb-10">
+            Eres la luz que ilumina mi vida como el amarillo de estas flores.
+        </p>
+
+        <button id="btnAbrir" class="neon-btn rounded-full px-8 py-3 bg-black text-[#FFD700] font-semibold text-sm flex items-center gap-2 mb-8 cursor-pointer z-20 relative">
+            🌸 Abre Mi Corazón
+        </button>
+
+        <p class="font-cursive text-[#FFD700] text-2xl tracking-wide mb-2">
+            Para ti, con amor
+        </p>
+    </div>
+
+
+    <!-- PANTALLA 2: Mensaje y Collage (Oculta al inicio) -->
+    <div id="pantalla-2" class="hidden neon-card w-full max-w-sm rounded-[30px] p-6 text-center flex flex-col items-center relative z-10">
+        
+        <button id="toggleMusicBtn2" class="music-btn absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center text-[#FFD700] text-xs">
+            <i id="musicIcon2" class="fas fa-music"></i>
+        </button>
+
+        <h2 class="font-cursive text-[#FFD700] text-4xl mt-6 mb-4">Te Amo</h2>
+        
+        <p class="text-white text-sm leading-relaxed mb-6 px-2 font-light">
+            Mi princesita 💖, gracias por existir y llenar mis días de alegría. Espero que este pequeño detalle te saque una hermosa sonrisa hoy. Eres mi flor más preciosa.
+        </p>
+
+        <!-- FOTOS DEL COLLAGE ACTUALIZADAS -->
+        <div class="grid grid-cols-2 gap-3 w-full mb-6">
+            <div class="w-full h-24 bg-gray-800 rounded-xl overflow-hidden neon-btn">
+                <img src="./img/1.jpeg" alt="Nuestra Foto 1" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full h-24 bg-gray-800 rounded-xl overflow-hidden neon-btn">
+                <img src="./img/2.jpeg" alt="Nuestra Foto 2" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full h-24 bg-gray-800 rounded-xl overflow-hidden neon-btn">
+                <img src="./img/3.jpeg" alt="Nuestra Foto 3" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full h-24 bg-gray-800 rounded-xl overflow-hidden neon-btn">
+                <img src="./img/4.jpg" alt="Nuestra Foto 4" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <p class="font-cursive text-[#FFD700] text-2xl tracking-wide mt-2">
+            Siempre juntos
+        </p>
+
+        <button id="btnVolver" class="mt-8 text-gray-400 hover:text-[#FFD700] text-xs underline flex items-center gap-2 transition-colors cursor-pointer">
+            <i class="fas fa-arrow-left"></i> Volver a la portada
+        </button>
+    </div>
+
+    <script>
+        const pantalla1 = document.getElementById('pantalla-1');
+        const pantalla2 = document.getElementById('pantalla-2');
+        const btnAbrir = document.getElementById('btnAbrir');
+        const btnVolver = document.getElementById('btnVolver');
+        
+        // Configuración YouTube API
+        let player;
+        let isPlaying = false;
+        const icon1 = document.getElementById('musicIcon');
+        const icon2 = document.getElementById('musicIcon2');
+
+        function onYouTubeIframeAPIReady() {
+            const originUrl = window.location.protocol === 'file:' ? '*' : window.location.origin;
+            
+            player = new YT.Player('youtube-player', {
+                height: '1',
+                width: '1',
+                videoId: 'gv63CGCx6vg',
+                playerVars: {
+                    'autoplay': 0, 
+                    'controls': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1,
+                    'loop': 1,
+                    'playlist': 'gv63CGCx6vg',
+                    'origin': originUrl 
+                }
+            });
+        }
+
+        // Reproducir / Pausar
+        function togglePlay() {
+            if (player && typeof player.getPlayerState === 'function') {
+                if (isPlaying) {
+                    player.pauseVideo();
+                    isPlaying = false;
+                    icon1.classList.remove('fa-beat');
+                    icon2.classList.remove('fa-beat');
+                } else {
+                    player.playVideo();
+                    isPlaying = true;
+                    icon1.classList.add('fa-beat');
+                    icon2.classList.add('fa-beat');
+                }
+            } else {
+                alert("La música necesita un servidor para sonar (al subirlo a GitHub Pages funcionará perfectamente).");
+            }
+        }
+
+        document.getElementById('toggleMusicBtn').addEventListener('click', togglePlay);
+        document.getElementById('toggleMusicBtn2').addEventListener('click', togglePlay);
+
+        // Ir a la Pantalla 2
+        btnAbrir.addEventListener('click', () => {
+            if (player && typeof player.playVideo === 'function' && !isPlaying) {
+                player.playVideo();
+                isPlaying = true;
+                icon2.classList.add('fa-beat');
+                icon1.classList.add('fa-beat');
+            }
+
+            pantalla1.classList.add('fade-out');
+            pantalla1.classList.remove('fade-in'); 
+            
+            setTimeout(() => {
+                pantalla1.classList.add('hidden');
+                pantalla2.classList.remove('hidden');
+                pantalla2.classList.remove('fade-out');
+                pantalla2.classList.add('fade-in');
+            }, 800);
+        });
+
+        // Volver a la Pantalla 1
+        btnVolver.addEventListener('click', () => {
+            pantalla2.classList.add('fade-out');
+            pantalla2.classList.remove('fade-in');
+
+            setTimeout(() => {
+                pantalla2.classList.add('hidden');
+                pantalla1.classList.remove('hidden');
+                pantalla1.classList.remove('fade-out');
+                pantalla1.classList.add('fade-in');
+            }, 800);
+        });
+    </script>
+</body>
+</html>
